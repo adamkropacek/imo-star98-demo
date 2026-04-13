@@ -38,12 +38,28 @@
       display: flex;
       align-items: center;
     }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://imo-star98.com/wp-content/uploads/2018/07/NADHLED-ZE-Z%C3%81PADU-2.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      filter: brightness(0.32);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(26,23,20,0.82) 0%,
+        rgba(26,23,20,0.45) 50%,
+        rgba(26,23,20,0.55) 100%
+      );
+    }
     .hero-grid {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(184,149,90,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(184,149,90,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(184,149,90,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,149,90,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
     }
     .hero-glow {
@@ -52,7 +68,7 @@
       right: -10%;
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(184,149,90,0.08) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(184,149,90,0.06) 0%, transparent 65%);
     }
     .hero-glow-2 {
       position: absolute;
@@ -60,7 +76,7 @@
       left: 5%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(184,149,90,0.05) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(184,149,90,0.04) 0%, transparent 65%);
     }
 
     /* Gold accent */
@@ -203,10 +219,12 @@
 
   <!-- HERO -->
   <section class="hero px-6">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
-    <div class="max-w-6xl mx-auto w-full relative z-10 pt-48 md:pt-56 pb-10">
+    <div class="max-w-6xl mx-auto w-full relative z-10 pt-32 md:pt-40 pb-10">
       <div class="max-w-3xl">
         <div class="section-label mb-6 fade-up">Od roku 1998 — Hradec Králové & Praha</div>
         <h1 class="serif text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-6 fade-up d1">
