@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMO-STAR 98 — Variace 1: Minimalistická</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0a0a0a;
+      --off-white: #f8f7f4;
+      --mid: #d0cdc8;
+      --accent: #c8a97e;
+      --text: #2a2a2a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 2rem 4rem;
+      mix-blend-mode: normal;
+    }
+    .nav-logo img { height: 40px; filter: invert(1); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      padding: .6rem 1.8rem;
+      border: 1px solid rgba(255,255,255,.5);
+      color: var(--off-white) !important;
+      border-radius: 2px;
+      transition: background .2s, color .2s !important;
+    }
+    .nav-cta:hover { background: var(--off-white) !important; color: var(--black) !important; }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.3) 0%, rgba(0,0,0,.55) 100%);
+    }
+    .hero-content {
+      position: absolute; bottom: 12vh; left: 4rem;
+      max-width: 700px;
+    }
+    .hero-tag {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.4rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--off-white);
+      margin-bottom: 1.8rem;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: .95rem; color: rgba(255,255,255,.75);
+      line-height: 1.7; max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: .9rem 2.6rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: background .2s;
+    }
+    .btn:hover { background: #b8936a; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.6);
+      margin-left: 1rem;
+      color: #fff;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    /* NUMBERS */
+    .numbers {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--black);
+      padding: 3.5rem 4rem;
+    }
+    .num-item { text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+    .num-item:last-child { border-right: none; }
+    .num-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300;
+      color: var(--accent); line-height: 1;
+    }
+    .num-label {
+      font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-top: .6rem;
+    }
+
+    /* INTRO */
+    .intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; padding: 8rem 4rem;
+      align-items: center;
+    }
+    .intro-label {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.2rem;
+    }
+    .intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.25;
+    }
+    .intro-body { font-size: .95rem; line-height: 1.85; color: #555; margin-top: 1.5rem; }
+    .intro-img-wrap { position: relative; }
+    .intro-img-wrap img { width: 100%; display: block; }
+    .intro-img-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 120px; height: 120px;
+      background: var(--accent);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: #fff;
+    }
+    .intro-img-badge strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 300; line-height: 1;
+    }
+    .intro-img-badge span { font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    /* PROJECTS */
+    .projects { padding: 6rem 4rem; }
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+    .section-tag {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300; line-height: 1.2; margin-top: .5rem;
+    }
+    .view-all {
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; color: var(--text); border-bottom: 1px solid currentColor;
+      padding-bottom: .1rem;
+    }
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+    .proj-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .proj-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .proj-card:hover img { transform: scale(1.05); }
+    .proj-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0; transition: opacity .3s;
+    }
+    .proj-card:hover .proj-card-overlay { opacity: 1; }
+    .proj-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; color: #fff; font-weight: 300;
+    }
+    .proj-card-year { font-size: .72rem; color: var(--accent); letter-spacing: .1em; }
+    .proj-card-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      color: #fff; text-decoration: none; margin-top: .8rem;
+      border-bottom: 1px solid rgba(255,255,255,.4); padding-bottom: .1rem;
+    }
+
+    /* SERVICES */
+    .services {
+      background: var(--black); color: var(--off-white);
+      padding: 7rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+      align-items: start;
+    }
+    .services-left .section-title { color: var(--off-white); }
+    .services-left .section-tag { margin-bottom: .8rem; }
+    .services-left p { font-size: .95rem; color: rgba(255,255,255,.55); line-height: 1.8; margin-top: 1.5rem; }
+    .service-list { display: flex; flex-direction: column; gap: 1px; margin-top: 2rem; }
+    .service-item {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: default;
+      transition: padding .2s;
+    }
+    .service-item:hover { padding-left: .5rem; }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 300;
+    }
+    .service-arrow { color: var(--accent); font-size: 1.2rem; }
+    .service-desc {
+      font-size: .85rem; color: rgba(255,255,255,.45);
+      margin-top: .3rem; line-height: 1.5;
+    }
+
+    /* INTERIOR */
+    .interior {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .interior-img { height: 600px; overflow: hidden; }
+    .interior-img img { width: 100%; height: 100%; object-fit: cover; }
+    .interior-content {
+      padding: 5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      background: #f0ece6;
+    }
+    .interior-content .section-tag { margin-bottom: 1rem; }
+    .interior-content .section-title { margin-bottom: 1.5rem; }
+    .interior-content p { font-size: .95rem; line-height: 1.8; color: #555; margin-bottom: 2rem; }
+
+    /* CONTACT */
+    .contact {
+      padding: 7rem 4rem;
+      text-align: center;
+      background: var(--off-white);
+    }
+    .contact .section-tag { margin-bottom: 1rem; }
+    .contact .section-title { margin-bottom: 1rem; }
+    .contact-sub { font-size: .95rem; color: #777; margin-bottom: 3rem; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; max-width: 800px; margin: 0 auto 3rem;
+    }
+    .contact-item-label {
+      font-size: .72rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .5rem;
+    }
+    .contact-item-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); color: rgba(255,255,255,.4);
+      padding: 2rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.4); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    .footer-socials { display: flex; gap: 1.5rem; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.5rem; }
+      .numbers { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
+      .intro, .services, .interior { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      .interior-img { height: 350px; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .projects, .contact { padding: 4rem 1.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><img src="https://imo-star98.com/wp-content/uploads/2018/06/imo-star-98.gif" alt="IMO-STAR 98" /></a>
+  <ul class="nav-links">
+    <li><a href="#">O firmě</a></li>
+    <li><a href="#">Projekty</a></li>
+    <li><a href="#">Interiéry</a></li>
+    <li><a href="#">Novinky</a></li>
+    <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <img class="hero-img" src="https://imo-star98.com/wp-content/uploads/2018/07/NADHLED-ZE-Z%C3%81PADU-2.jpg" alt="IMO-STAR 98 projekt" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Hradec Králové · Praha · od roku 1998</p>
+    <h1 class="hero-title">Měníme vaše sny<br />ve <em>skutečnost</em></h1>
+    <p class="hero-sub">Realizujeme rezidenční projekty a interiéry s důrazem na kvalitu, individuální přístup a trvalou hodnotu.</p>
+    <a href="#projects" class="btn">Zobrazit projekty</a>
+    <a href="#contact" class="btn btn-outline">Kontaktujte nás</a>
+  </div>
+</section>
+
+<div class="numbers">
+  <div class="num-item">
+    <div class="num-value">25+</div>
+    <div class="num-label">Let zkušeností</div>
+  </div>
+  <div class="num-item">
+    <div class="num-value">500+</div>
+    <div class="num-label">Realizovaných bytů</div>
+  </div>
+  <div class="num-item">
+    <div class="num-value">20+</div>
+    <div class="num-label">Dokončených projektů</div>
+  </div>
+  <div class="num-item">
+    <div class="num-value">100%</div>
+    <div class="num-label">Spokojených klientů</div>
+  </div>
+</div>
+
+<section class="intro">
+  <div>
+    <p class="intro-label">O společnosti</p>
+    <h2 class="intro-title">Již 25 let měníme<br />vaše sny ve skutečnost</h2>
+    <p class="intro-body">Od roku 1998 jsme pro vás realizovali stovky bytů a rodinných domů v Hradci Králové, Praze a dalších městech. Nabízíme pomoc s realizací a plánováním rekonstrukcí vašeho domova nebo sídla firmy.</p>
+    <p class="intro-body">Díky vlastnímu technickému dozoru a ověřeným dodavatelům garantujeme vysokou kvalitu na každém projektu.</p>
+    <a href="#" class="btn" style="margin-top: 2rem; background: var(--black);">Více o firmě</a>
+  </div>
+  <div class="intro-img-wrap">
+    <img src="https://imo-star98.com/wp-content/uploads/2018/06/NADHLED-Z-JIHU_1web-1024x576.jpg" alt="RD Nová Pálenecká" />
+    <div class="intro-img-badge">
+      <strong>25</strong>
+      <span>let praxe</span>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-header">
+    <div>
+      <p class="section-tag">Naše práce</p>
+      <h2 class="section-title">Realizované projekty</h2>
+    </div>
+    <a href="#" class="view-all">Všechny projekty</a>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2021/02/patrovy_RD-1024x576.jpg" alt="RD Nová Pálenecká II" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2021 · Aktuální</div>
+        <div class="proj-card-title">RD Nová Pálenecká II</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2016/01/Sukovy3-2-1024x683.jpg" alt="Rezidence Sukovy Sady" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2016–2017</div>
+        <div class="proj-card-title">Rezidence Sukovy Sady</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/06/20150820_093803-1024x740.jpg" alt="Bytový dům Slunečná" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2014–2015</div>
+        <div class="proj-card-title">Bytový dům Slunečná</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/06/Plotiste4-1024x683.jpg" alt="BD Plotiště n. Labem" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2013–2014</div>
+        <div class="proj-card-title">BD Plotiště n. Labem</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2011/01/Svoboda4-1024x768.jpg" alt="Apartmány Svoboda" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2009–2011</div>
+        <div class="proj-card-title">Apartmány Svoboda n. Úpou</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+    <div class="proj-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2010/01/V%C4%9Bko%C5%A1eI1-1024x575.jpg" alt="Řadové RD Věkoše" />
+      <div class="proj-card-overlay">
+        <div class="proj-card-year">2009–2011</div>
+        <div class="proj-card-title">Řadové RD Věkoše I</div>
+        <a href="#" class="proj-card-link">Zobrazit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-left">
+    <p class="section-tag">Co nabízíme</p>
+    <h2 class="section-title" style="color:#f8f7f4;">Komplexní stavební a designové služby</h2>
+    <p>Od prvního návrhu až po předání klíčů — vše pod jednou střechou. Spolupracujeme jen s ověřenými dodavateli a každý projekt má vlastní technický dozor.</p>
+  </div>
+  <div class="service-list">
+    <div class="service-item">
+      <div>
+        <div class="service-name">Rezidenční development</div>
+        <div class="service-desc">Rodinné domy, bytové domy, rezidence</div>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item">
+      <div>
+        <div class="service-name">Interiérový design</div>
+        <div class="service-desc">Návrhy, grafické zpracování, poradenství</div>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item">
+      <div>
+        <div class="service-name">Kompletní rekonstrukce</div>
+        <div class="service-desc">Byty, domy i sídla firem</div>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+    <div class="service-item">
+      <div>
+        <div class="service-name">Technický dozor</div>
+        <div class="service-desc">Vlastní dohled nad průběhem stavby</div>
+      </div>
+      <span class="service-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<section class="interior">
+  <div class="interior-img">
+    <img src="https://imo-star98.com/wp-content/uploads/2018/07/koupelna9.jpg" alt="Interiér koupelna" />
+  </div>
+  <div class="interior-content">
+    <p class="section-tag">Interiérový design</p>
+    <h2 class="section-title">Prostory, které odrážejí váš styl</h2>
+    <p>Navrhujeme interiéry na míru — od grafického zpracování až po výběr materiálů a koordinaci dodavatelů. Pracujeme s byty, rodinnými domy i kancelářemi.</p>
+    <a href="#" class="btn" style="background: var(--black); align-self: flex-start;">Zobrazit interiéry</a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <p class="section-tag">Spolupráce</p>
+  <h2 class="section-title">Kontaktujte nás</h2>
+  <p class="contact-sub">Rádi zodpovíme vaše dotazy a prodiskutujeme váš projekt.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-item-label">Telefon</div>
+      <div class="contact-item-val">+420 777 350 935</div>
+    </div>
+    <div>
+      <div class="contact-item-label">E-mail</div>
+      <div class="contact-item-val">imo-star98@imo-star98.com</div>
+    </div>
+    <div>
+      <div class="contact-item-label">Lokace</div>
+      <div class="contact-item-val">Hradec Králové</div>
+    </div>
+  </div>
+  <a href="#" class="btn" style="background: var(--black);">Zaslat dotaz</a>
+</section>
+
+<footer>
+  <span>© 2026 IMO-STAR 98 s.r.o. Všechna práva vyhrazena.</span>
+  <div class="footer-socials">
+    <a href="https://www.facebook.com/Imo-Star98-sro-322510877842410/">Facebook</a>
+    <a href="https://www.instagram.com">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>

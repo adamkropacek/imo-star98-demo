@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMO-STAR 98 — Variace 2: Dark Luxury</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --surface2: #181818;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --text: #e8e2d9;
+      --muted: rgba(232,226,217,.45);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--bg); color: var(--text); }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.8rem 5rem;
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none;
+    }
+    .nav-brand img { height: 36px; filter: brightness(2) sepia(1) hue-rotate(5deg) saturate(1.5); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-btn {
+      padding: .6rem 1.8rem;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      transition: background .2s !important;
+    }
+    .nav-btn:hover { background: var(--gold) !important; color: var(--bg) !important; }
+
+    /* HERO — full-screen split */
+    .hero {
+      height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      background: var(--surface);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 5rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+      content: '1998';
+      position: absolute; bottom: -2rem; left: -1rem;
+      font-family: 'Bodoni Moda', serif; font-size: 14rem; font-weight: 700;
+      color: rgba(201,168,76,.04); line-height: 1; pointer-events: none;
+      user-select: none;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 2.5rem; height: 1px; background: var(--gold);
+    }
+    .hero-eyebrow span {
+      font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+      font-weight: 400; line-height: 1.15;
+      color: var(--text);
+    }
+    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-sub {
+      font-size: .9rem; line-height: 1.9; color: var(--muted);
+      max-width: 400px; margin: 2rem 0 3rem;
+    }
+    .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+    .btn-gold {
+      padding: 1rem 2.8rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      text-decoration: none; font-weight: 600;
+      transition: background .2s;
+    }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-ghost {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      transition: color .2s;
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(8,8,8,.4) 0%, transparent 60%);
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      overflow: hidden; background: var(--gold);
+      padding: .8rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      animation: marquee 25s linear infinite;
+      width: max-content;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--bg); white-space: nowrap; font-weight: 600;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .marquee-item::after { content: '✦'; }
+
+    /* STATS */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid rgba(201,168,76,.1);
+    }
+    .stat {
+      padding: 3.5rem 3rem;
+      border-right: 1px solid rgba(201,168,76,.1);
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--surface); }
+    .stat-num {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 3.8rem; font-weight: 400; color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: .6rem; }
+
+    /* PROJECTS SHOWCASE */
+    .showcase { padding: 7rem 5rem; }
+    .sh-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 4rem; }
+    .sh-eyebrow {
+      font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .sh-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--gold); display: block; }
+    .sh-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 400; color: var(--text);
+    }
+    .sh-link {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+      border-bottom: 1px solid rgba(201,168,76,.3);
+      padding-bottom: .2rem; transition: color .2s;
+    }
+    .sh-link:hover { color: var(--gold-light); }
+
+    /* Featured + grid */
+    .proj-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5px; }
+    .proj-main { position: relative; overflow: hidden; }
+    .proj-main img { width: 100%; height: 100%; object-fit: cover; min-height: 500px; display: block; transition: transform .7s; }
+    .proj-main:hover img { transform: scale(1.04); }
+    .proj-side { display: grid; grid-template-rows: 1fr 1fr; gap: 1.5px; }
+    .proj-thumb { position: relative; overflow: hidden; }
+    .proj-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+    .proj-thumb:hover img { transform: scale(1.06); }
+
+    .proj-info {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 50%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem 2rem 2rem;
+      opacity: 0; transition: opacity .3s;
+    }
+    .proj-main:hover .proj-info,
+    .proj-thumb:hover .proj-info { opacity: 1; }
+    .proj-info-year { font-size: .68rem; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .4rem; }
+    .proj-info-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.4rem; color: var(--text);
+    }
+    .proj-info-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+      color: var(--gold); text-decoration: none; margin-top: .8rem;
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+    .about-img { position: relative; overflow: hidden; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-img-badge {
+      position: absolute; top: 3rem; right: 3rem;
+      width: 100px; height: 100px;
+      border: 1px solid var(--gold);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(8,8,8,.8);
+    }
+    .about-img-badge strong {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2.2rem; color: var(--gold); line-height: 1;
+    }
+    .about-img-badge span { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .about-content {
+      background: var(--surface);
+      padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-content .sh-eyebrow { margin-bottom: 1.5rem; }
+    .about-content .sh-title { margin-bottom: 2rem; }
+    .about-content p { font-size: .92rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
+    .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+    .feature {
+      padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,.1);
+      transition: border-color .2s, background .2s;
+    }
+    .feature:hover { border-color: var(--gold); background: rgba(201,168,76,.03); }
+    .feature-icon { color: var(--gold); font-size: 1.2rem; margin-bottom: .8rem; }
+    .feature-title { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text); margin-bottom: .4rem; }
+    .feature-desc { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* INTERIOR */
+    .interior-dark { padding: 7rem 5rem; }
+    .interior-dark .sh-header { margin-bottom: 3rem; }
+    .int-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; }
+    .int-card { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+    .int-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s; }
+    .int-card:hover img { transform: scale(1.06); }
+    .int-card-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      font-family: 'Bodoni Moda', serif; font-size: 1rem;
+      color: var(--text); background: rgba(8,8,8,.7);
+      padding: .3rem .8rem; border-left: 2px solid var(--gold);
+    }
+
+    /* CONTACT */
+    .contact-dark {
+      background: var(--surface);
+      padding: 7rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .contact-dark .sh-eyebrow { margin-bottom: 1rem; }
+    .contact-dark .sh-title { margin-bottom: 1.5rem; }
+    .contact-dark p { font-size: .92rem; line-height: 1.8; color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .cd-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+    .cd-icon { color: var(--gold); font-size: 1rem; margin-top: .1rem; min-width: 1rem; }
+    .cd-label { font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+    .cd-val { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; color: var(--text); }
+
+    /* FOOTER */
+    footer {
+      background: #040404;
+      border-top: 1px solid rgba(201,168,76,.1);
+      padding: 2.5rem 5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span { font-size: .75rem; color: var(--muted); }
+    .footer-socials { display: flex; gap: 1.5rem; }
+    .footer-socials a { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-socials a:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vh; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .showcase, .interior-dark, .contact-dark { padding: 4rem 1.5rem; }
+      .proj-layout { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .about-content { padding: 3rem 1.5rem; }
+      .int-grid { grid-template-columns: 1fr 1fr; }
+      .contact-dark { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#">
+    <img src="https://imo-star98.com/wp-content/uploads/2018/06/imo-star-98.gif" alt="IMO-STAR 98" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">O firmě</a></li>
+    <li><a href="#">Projekty</a></li>
+    <li><a href="#">Interiéry</a></li>
+    <li><a href="#">Novinky</a></li>
+    <li><a href="#" class="nav-btn">Kontakt</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span>Stavíme od roku 1998</span></div>
+    <h1 class="hero-title">Vaše vize.<br />Naše <em>řemeslo.</em></h1>
+    <p class="hero-sub">Rezidenční development a interiérový design v Hradci Králové a Praze. Přes dvě dekády precizní práce, stovky spokojených rodin.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-gold">Naše projekty</a>
+      <a href="#contact" class="btn-ghost">Kontaktujte nás →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://imo-star98.com/wp-content/uploads/2018/07/NADHLED-ZE-Z%C3%81PADU-2.jpg" alt="IMO-STAR projekt" />
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Rezidenční development</span>
+    <span class="marquee-item">Interiérový design</span>
+    <span class="marquee-item">Kompletní rekonstrukce</span>
+    <span class="marquee-item">Hradec Králové</span>
+    <span class="marquee-item">Praha</span>
+    <span class="marquee-item">Ověřeni dodavatelé</span>
+    <span class="marquee-item">Od roku 1998</span>
+    <span class="marquee-item">Rezidenční development</span>
+    <span class="marquee-item">Interiérový design</span>
+    <span class="marquee-item">Kompletní rekonstrukce</span>
+    <span class="marquee-item">Hradec Králové</span>
+    <span class="marquee-item">Praha</span>
+    <span class="marquee-item">Ověřeni dodavatelé</span>
+    <span class="marquee-item">Od roku 1998</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Let na trhu</div></div>
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Realizovaných bytů</div></div>
+  <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Dokončených projektů</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Aktivní projekty</div></div>
+</div>
+
+<section class="showcase" id="projects">
+  <div class="sh-header">
+    <div>
+      <p class="sh-eyebrow">Naše práce</p>
+      <h2 class="sh-title">Vybrané projekty</h2>
+    </div>
+    <a href="#" class="sh-link">Všechny projekty →</a>
+  </div>
+  <div class="proj-layout">
+    <div class="proj-main">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/06/NADHLED-Z-JIHU_1web-1024x576.jpg" alt="RD Nová Pálenecká" />
+      <div class="proj-info">
+        <div class="proj-info-year">2018–2020 · Dokončeno</div>
+        <div class="proj-info-title">RD Nová Pálenecká</div>
+        <a href="#" class="proj-info-link">Otevřít projekt →</a>
+      </div>
+    </div>
+    <div class="proj-side">
+      <div class="proj-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2021/02/patrovy_RD-1024x576.jpg" alt="RD Nová Pálenecká II" />
+        <div class="proj-info">
+          <div class="proj-info-year">2021 · Aktuální</div>
+          <div class="proj-info-title">RD Nová Pálenecká II</div>
+          <a href="#" class="proj-info-link">Otevřít →</a>
+        </div>
+      </div>
+      <div class="proj-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2016/01/Sukovy3-2-1024x683.jpg" alt="Rezidence Sukovy Sady" />
+        <div class="proj-info">
+          <div class="proj-info-year">2016–2017</div>
+          <div class="proj-info-title">Rezidence Sukovy Sady</div>
+          <a href="#" class="proj-info-link">Otevřít →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-img">
+    <img src="https://imo-star98.com/wp-content/uploads/2018/06/20150820_093803-1024x740.jpg" alt="O firmě" />
+    <div class="about-img-badge">
+      <strong>25</strong>
+      <span>let praxe</span>
+    </div>
+  </div>
+  <div class="about-content">
+    <p class="sh-eyebrow">O společnosti</p>
+    <h2 class="sh-title">Důvěra postavená<br />na výsledcích</h2>
+    <p>Od roku 1998 jsme realizovali stovky bytů a rodinných domů v Hradci Králové, Praze a dalších městech. Každý projekt nese naše jméno — a to nám zavazuje.</p>
+    <div class="about-features">
+      <div class="feature">
+        <div class="feature-icon">◆</div>
+        <div class="feature-title">Individuální přístup</div>
+        <div class="feature-desc">Přizpůsobíme nemovitost přesně vašim přáním a potřebám.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">◆</div>
+        <div class="feature-title">Ověření dodavatelé</div>
+        <div class="feature-desc">Spolupracujeme jen s těmi, kteří prokázali svou kvalitu.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">◆</div>
+        <div class="feature-title">Vlastní dozor</div>
+        <div class="feature-desc">Technický dozor na každé stavbě — kontrolujeme vše sami.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">◆</div>
+        <div class="feature-title">Výhodné ceny</div>
+        <div class="feature-desc">Optimalizujeme procesy, aby cena odpovídala hodnotě.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="interior-dark">
+  <div class="sh-header">
+    <div>
+      <p class="sh-eyebrow">Interiérový design</p>
+      <h2 class="sh-title">Prostory přesně pro vás</h2>
+    </div>
+    <a href="#" class="sh-link">Zobrazit více →</a>
+  </div>
+  <div class="int-grid">
+    <div class="int-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/07/koupelna9.jpg" alt="Koupelna" />
+      <div class="int-card-label">Koupelna</div>
+    </div>
+    <div class="int-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/07/kuchyn1.jpg" alt="Kuchyně" />
+      <div class="int-card-label">Kuchyně</div>
+    </div>
+    <div class="int-card">
+      <img src="https://imo-star98.com/wp-content/uploads/2018/06/Plotiste4-1024x683.jpg" alt="Exteriér" />
+      <div class="int-card-label">Exteriér</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-dark" id="contact">
+  <div>
+    <p class="sh-eyebrow">Spolupráce</p>
+    <h2 class="sh-title">Začněme váš projekt</h2>
+    <p>Rádi se potkáme, projdeme vaše požadavky a navrhneme řešení na míru. Nezávazná konzultace je vždy zdarma.</p>
+    <a href="#" class="btn-gold">Zaslat dotaz</a>
+  </div>
+  <div class="contact-details">
+    <div class="cd-item">
+      <div class="cd-icon">📞</div>
+      <div>
+        <div class="cd-label">Telefon</div>
+        <div class="cd-val">+420 777 350 935</div>
+      </div>
+    </div>
+    <div class="cd-item">
+      <div class="cd-icon">✉</div>
+      <div>
+        <div class="cd-label">E-mail</div>
+        <div class="cd-val">imo-star98@imo-star98.com</div>
+      </div>
+    </div>
+    <div class="cd-item">
+      <div class="cd-icon">📍</div>
+      <div>
+        <div class="cd-label">Sídlo</div>
+        <div class="cd-val">Hradec Králové</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 IMO-STAR 98 s.r.o. — Všechna práva vyhrazena</span>
+  <div class="footer-socials">
+    <a href="https://www.facebook.com/Imo-Star98-sro-322510877842410/">Facebook</a>
+    <a href="https://www.instagram.com">Instagram</a>
+  </div>
+</footer>
+
+</body>
+</html>

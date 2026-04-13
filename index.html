@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMO-STAR 98 — Demo variace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Space Grotesk', sans-serif; background: #0d0d0d; color: #f2f0eb; min-height: 100vh; padding: 4rem 2rem; }
+    .header { text-align: center; margin-bottom: 4rem; }
+    .header h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.02em; }
+    .header p { color: rgba(242,240,235,.5); margin-top: .7rem; font-size: .95rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .card {
+      background: #1a1a1a; border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden; border-radius: 4px;
+      transition: transform .2s, border-color .2s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(255,77,28,.5); }
+    .card-thumb { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; }
+    .card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .card:hover .card-thumb img { transform: scale(1.04); }
+    .card-body { padding: 1.5rem; }
+    .card-num { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: #ff4d1c; margin-bottom: .5rem; }
+    .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; }
+    .card-desc { font-size: .82rem; color: rgba(242,240,235,.5); line-height: 1.6; }
+    .card-arrow {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .78rem; font-weight: 600; color: #ff4d1c;
+      margin-top: 1rem;
+    }
+    .footer-note { text-align: center; margin-top: 4rem; font-size: .78rem; color: rgba(242,240,235,.2); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>IMO-STAR 98 — Demo variace</h1>
+    <p>5 různých designů webové prezentace. Klikni na variantu a prohlédni si ji.</p>
+  </div>
+  <div class="grid">
+    <a class="card" href="v1-minimalist.html">
+      <div class="card-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2018/07/NADHLED-ZE-Z%C3%81PADU-2.jpg" alt="V1" />
+      </div>
+      <div class="card-body">
+        <div class="card-num">Variace 01</div>
+        <div class="card-title">Minimalistická</div>
+        <div class="card-desc">Čistá, světlá, hodně bílého prostoru. Serif písmo, zlatý akcent. Pocit architektonického studia.</div>
+        <div class="card-arrow">Otevřít →</div>
+      </div>
+    </a>
+    <a class="card" href="v2-dark-luxury.html">
+      <div class="card-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2021/02/patrovy_RD-1024x576.jpg" alt="V2" />
+      </div>
+      <div class="card-body">
+        <div class="card-num">Variace 02</div>
+        <div class="card-title">Dark Luxury</div>
+        <div class="card-desc">Tmavé pozadí, zlaté detaily, animovaný marquee. Prémiový developer — pocit jako Porsche.</div>
+        <div class="card-arrow">Otevřít →</div>
+      </div>
+    </a>
+    <a class="card" href="v3-corporate.html">
+      <div class="card-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2016/01/Sukovy3-2-1024x683.jpg" alt="V3" />
+      </div>
+      <div class="card-body">
+        <div class="card-num">Variace 03</div>
+        <div class="card-title">Corporate</div>
+        <div class="card-desc">Navy + oranžová, topbar s kontakty, karta každého projektu, kontaktní formulář. Důvěryhodná firma.</div>
+        <div class="card-arrow">Otevřít →</div>
+      </div>
+    </a>
+    <a class="card" href="v4-warm-story.html">
+      <div class="card-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2018/06/20150820_093803-1024x740.jpg" alt="V4" />
+      </div>
+      <div class="card-body">
+        <div class="card-num">Variace 04</div>
+        <div class="card-title">Warm Story</div>
+        <div class="card-desc">Terakota + písková, timeline od roku 1998, lidský tón, citát. "Stavíme domovy, ne jen domy."</div>
+        <div class="card-arrow">Otevřít →</div>
+      </div>
+    </a>
+    <a class="card" href="v5-dynamic-split.html">
+      <div class="card-thumb">
+        <img src="https://imo-star98.com/wp-content/uploads/2018/06/Plotiste4-1024x683.jpg" alt="V5" />
+      </div>
+      <div class="card-body">
+        <div class="card-num">Variace 05</div>
+        <div class="card-title">Dynamic Split</div>
+        <div class="card-desc">Černý nav, červený akcent, editorial seznam projektů, bento grid, Space Grotesk. Moderní tech feel.</div>
+        <div class="card-arrow">Otevřít →</div>
+      </div>
+    </a>
+  </div>
+  <div class="footer-note">IMO-STAR 98 s.r.o. — demo prezentace</div>
+</body>
+</html>
