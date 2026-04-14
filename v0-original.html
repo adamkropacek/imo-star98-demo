@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #B8955A;
-      --gold-light: #D4AE78;
-      --dark: #1A1714;
+      --gold: #C07252;
+      --gold-light: #D4906E;
+      --dark: #2A1E14;
       --cream: #FAF8F4;
       --warm-gray: #F0EDE8;
       --text-muted: #8C8278;
@@ -31,7 +31,7 @@
     .navbar.scrolled {
       background: rgba(250,248,244,0.96);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(184,149,90,0.15);
+      border-bottom: 1px solid rgba(192,114,82,0.15);
     }
     .navbar .nav-link { color: rgba(255,255,255,0.75); }
     .navbar .nav-link:hover { color: var(--gold); }
@@ -65,9 +65,9 @@
       position: absolute; inset: 0;
       background: linear-gradient(
         105deg,
-        rgba(30,22,14,0.62) 0%,
-        rgba(30,22,14,0.28) 50%,
-        rgba(30,22,14,0.38) 100%
+        rgba(42,30,20,0.65) 0%,
+        rgba(42,30,20,0.28) 50%,
+        rgba(42,30,20,0.38) 100%
       );
     }
     .hero-glow {
@@ -76,7 +76,7 @@
       right: -10%;
       width: 700px;
       height: 700px;
-      background: radial-gradient(circle, rgba(184,149,90,0.06) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(192,114,82,0.06) 0%, transparent 65%);
     }
     .hero-glow-2 {
       position: absolute;
@@ -84,7 +84,7 @@
       left: 5%;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(184,149,90,0.04) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(192,114,82,0.04) 0%, transparent 65%);
     }
 
     /* Gold accent */
@@ -97,21 +97,21 @@
 
     /* Service card */
     .service-card {
-      border: 1px solid rgba(184,149,90,0.2);
+      border: 1px solid rgba(192,114,82,0.2);
       transition: all 0.3s ease;
       background: white;
     }
     .service-card:hover {
       border-color: var(--gold);
       transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(26,23,20,0.08);
+      box-shadow: 0 20px 60px rgba(42,30,20,0.08);
     }
-    .service-card:hover .service-icon { background: var(--gold); color: white; }
+    .service-card:hover .service-icon { background: rgba(192,114,82,0.1); border-color: var(--gold) !important; }
 
     /* Project card */
     .project-card { overflow: hidden; position: relative; }
     .project-card .overlay {
-      background: linear-gradient(to top, rgba(26,23,20,0.85) 0%, transparent 60%);
+      background: linear-gradient(to top, rgba(42,30,20,0.85) 0%, transparent 60%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -120,7 +120,7 @@
     .project-card img { transition: transform 0.5s ease; }
 
     /* Stats */
-    .stat-item { border-left: 1px solid rgba(184,149,90,0.3); }
+    .stat-item { border-left: 1px solid rgba(192,114,82,0.3); }
 
     /* Why us */
     .pillar { border-top: 2px solid transparent; transition: border-color 0.3s; }
@@ -155,7 +155,7 @@
 
     /* Photo placeholder */
     .photo-placeholder {
-      background: linear-gradient(135deg, #2A2520 0%, #1A1714 100%);
+      background: linear-gradient(135deg, #2A2018 0%, #2A1E14 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -180,9 +180,9 @@
       font-size: 10px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      background: rgba(184,149,90,0.15);
+      background: rgba(192,114,82,0.15);
       color: var(--gold);
-      border: 1px solid rgba(184,149,90,0.3);
+      border: 1px solid rgba(192,114,82,0.3);
       padding: 3px 10px;
       border-radius: 2px;
     }
@@ -206,7 +206,7 @@
     /* Project cards — V4 style adapted to V0 */
     .proj-card-v0 {
       background: white;
-      border: 1px solid rgba(184,149,90,0.2);
+      border: 1px solid rgba(192,114,82,0.2);
       border-radius: 2px;
       overflow: hidden;
       transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -214,7 +214,7 @@
     .proj-card-v0:hover {
       border-color: var(--gold);
       transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(26,23,20,0.1);
+      box-shadow: 0 20px 60px rgba(42,30,20,0.1);
     }
     .proj-card-v0-img {
       overflow: hidden;
@@ -356,7 +356,7 @@
 
         <!-- Interiérový design -->
         <div class="service-card rounded-sm p-8 reveal delay-1">
-          <div class="service-icon w-12 h-12 border border-gold rounded-sm flex items-center justify-center mb-6 transition-all duration-300" style="border-color:rgba(184,149,90,0.4)">
+          <div class="service-icon w-12 h-12 border border-gold rounded-sm flex items-center justify-center mb-6 transition-all duration-300" style="border-color:rgba(192,114,82,0.4)">
             <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
             </svg>
@@ -381,7 +381,7 @@
 
         <!-- Rekonstrukce -->
         <div class="service-card rounded-sm p-8 reveal delay-2">
-          <div class="service-icon w-12 h-12 border border-gold rounded-sm flex items-center justify-center mb-6 transition-all duration-300" style="border-color:rgba(184,149,90,0.4)">
+          <div class="service-icon w-12 h-12 border border-gold rounded-sm flex items-center justify-center mb-6 transition-all duration-300" style="border-color:rgba(192,114,82,0.4)">
             <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)">
               <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
             </svg>
@@ -405,25 +405,25 @@
         </div>
 
         <!-- Development -->
-        <div class="service-card rounded-sm p-8 reveal delay-3" style="background: var(--dark); border-color: rgba(184,149,90,0.3)">
-          <div class="w-12 h-12 border rounded-sm flex items-center justify-center mb-6" style="border-color:rgba(184,149,90,0.4)">
+        <div class="service-card rounded-sm p-8 reveal delay-3">
+          <div class="service-icon w-12 h-12 border rounded-sm flex items-center justify-center mb-6 transition-all duration-300" style="border-color:rgba(192,114,82,0.4)">
             <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:var(--gold)">
               <rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M2 12h20"/>
             </svg>
           </div>
           <div class="gold-line mb-4"></div>
-          <h3 class="serif text-2xl font-medium mb-3 text-white">Developerské projekty</h3>
-          <p class="text-sm leading-relaxed mb-6" style="color:#6A6058">
+          <h3 class="serif text-2xl font-medium mb-3" style="color:var(--dark)">Developerské projekty</h3>
+          <p class="text-sm leading-relaxed mb-6" style="color:var(--text-muted)">
             Výstavba a prodej bytových domů a rodinných domů v Hradci Králové a Praze. Od územního řízení po předání klíčů.
           </p>
           <div class="space-y-2">
-            <div class="flex items-center gap-2 text-sm" style="color:#6A6058">
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-muted)">
               <span class="w-1 h-1 rounded-full bg-gold inline-block"></span> Bytové domy
             </div>
-            <div class="flex items-center gap-2 text-sm" style="color:#6A6058">
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-muted)">
               <span class="w-1 h-1 rounded-full bg-gold inline-block"></span> Řadové & samostatné RD
             </div>
-            <div class="flex items-center gap-2 text-sm" style="color:#6A6058">
+            <div class="flex items-center gap-2 text-sm" style="color:var(--text-muted)">
               <span class="w-1 h-1 rounded-full bg-gold inline-block"></span> Infrastruktura v ceně
             </div>
           </div>
@@ -681,7 +681,7 @@
       let current = '';
       sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
       navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current ? '#B8955A' : '';
+        a.style.color = a.getAttribute('href') === '#' + current ? '#C07252' : '';
       });
     });
 
