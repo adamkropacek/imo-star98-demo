@@ -58,17 +58,20 @@
       background-image: url('https://imo-star98.com/wp-content/uploads/2018/07/NADHLED-ZE-Z%C3%81PADU-2.jpg');
       background-size: cover;
       background-position: center 40%;
-      filter: brightness(0.72);
+      filter: brightness(0.85);
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         105deg,
-        rgba(28,20,14,0.72) 0%,
-        rgba(28,20,14,0.32) 48%,
-        rgba(28,20,14,0.18) 100%
+        rgba(28,20,14,0.62) 0%,
+        rgba(28,20,14,0.24) 55%,
+        rgba(28,20,14,0.08) 100%
       );
     }
+    /* Hero text — bolder + shadow for contrast on lighter photo */
+    .hero h1 { text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4); }
+    .hero p, .hero .section-label, .hero .stat-item { text-shadow: 0 1px 8px rgba(0,0,0,0.6); }
     .hero-glow {
       position: absolute;
       top: -20%;
@@ -296,11 +299,11 @@
     <div class="hero-glow-2"></div>
     <div class="max-w-6xl mx-auto w-full relative z-10 pt-14 md:pt-16 pb-4">
       <div class="max-w-3xl">
-        <h1 class="serif text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-4 fade-up" style="padding: 0.5rem 0 0.5rem;">
+        <h1 class="serif text-4xl md:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-4 fade-up" style="padding: 0.5rem 0 0.5rem;">
           Domov podle<br>
           <em class="text-gold not-italic">Vašich představ.</em>
         </h1>
-        <p class="text-base leading-relaxed mb-2 fade-up d1" style="color:#9A9088; max-width:480px">
+        <p class="text-base leading-relaxed mb-2 fade-up d1" style="color:#F0ECE4; max-width:480px; font-weight:500;">
           Navrhujeme, rekonstruujeme a realizujeme interiéry bytů, rodinných domů i sídel firem.
         </p>
         <div class="section-label mb-6 fade-up d1">Od roku 1998 — Hradec Králové & Praha</div>
@@ -317,20 +320,20 @@
       <!-- Stats bar -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-0 mt-8 md:mt-10 fade-up d4">
         <div class="stat-item pl-6 pb-6">
-          <div class="serif text-3xl md:text-5xl font-light text-white">26+</div>
-          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#6A6058">let zkušeností</div>
+          <div class="serif text-3xl md:text-5xl font-semibold text-white">26+</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#D9D2C7; font-weight:500;">let zkušeností</div>
         </div>
         <div class="stat-item pl-6 pb-6">
-          <div class="serif text-3xl md:text-5xl font-light text-white">stovky</div>
-          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#6A6058">realizovaných projektů</div>
+          <div class="serif text-3xl md:text-5xl font-semibold text-white">stovky</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#D9D2C7; font-weight:500;">realizovaných projektů</div>
         </div>
         <div class="stat-item pl-6 pb-6">
-          <div class="serif text-3xl md:text-5xl font-light text-white">2</div>
-          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#6A6058">města — HK & Praha</div>
+          <div class="serif text-3xl md:text-5xl font-semibold text-white">2</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#D9D2C7; font-weight:500;">města — HK & Praha</div>
         </div>
         <div class="stat-item pl-6 pb-6">
-          <div class="serif text-3xl md:text-5xl font-light text-white">360°</div>
-          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#6A6058">servis na klíč</div>
+          <div class="serif text-3xl md:text-5xl font-semibold text-white">360°</div>
+          <div class="text-xs mt-1 tracking-widest uppercase" style="color:#D9D2C7; font-weight:500;">servis na klíč</div>
         </div>
       </div>
     </div>
